@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "wpm"
+    }
+  },
+  "defaultProject": "wpm",
+  "cli": {
+    "analytics": false
+  }
 }
