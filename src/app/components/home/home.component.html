@@ -23,7 +23,7 @@
 </div>
 
 
-<div class="input-container">
+<div class="input-container" tabindex="1" (keydown)="onKeydown($event)">
     <div class="start-indicator stop ">Start Typing</div>
     <div class="cursor"></div>
 
@@ -32,7 +32,7 @@
     <div class="new-words">
 
 
-        <div class="word">
+        <div class="word" id="word">
             <p>{{word}}</p>
         </div>
     </div>

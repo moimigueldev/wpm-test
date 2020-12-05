@@ -7,6 +7,8 @@ import { WordService } from '../../services/word.service'
 })
 export class HomeComponent implements OnInit {
   word: string;
+  charIndex = 0;
+
 
   constructor(
     public wordService: WordService
@@ -14,7 +16,31 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.word = this.wordService.words.join(' ')
-    console.log(this.word)
+
+
+
+  }
+
+
+  onKeydown(e) {
+
+
+
+    if (e.key === this.word[0]) {
+      this.word = this.word.substring(1)
+
+
+      if (this.word[0] === ' ') {
+        document.getElementById('word').style.marginLeft = '10px'
+        console.log('yes')
+      } else {
+        document.getElementById('word').style.marginLeft = '0px'
+
+      }
+
+    } else {
+      console.log('no')
+    }
 
   }
 
