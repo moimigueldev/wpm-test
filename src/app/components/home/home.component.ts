@@ -6,13 +6,15 @@ import { WordService } from '../../services/word.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  words = 'sdfasdfasdf'
+  word: string;
 
   constructor(
-    private wordService: WordService
+    public wordService: WordService
   ) { }
 
   ngOnInit(): void {
+    this.word = this.wordService.words.join(' ')
+    console.log(this.word)
 
   }
 

@@ -33,8 +33,8 @@
     align-items: center;
     justify-content: center;
     -webkit-box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
--moz-box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
-box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
+    -moz-box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
+    box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
 
 
 
@@ -67,14 +67,16 @@ box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
 
 
 .input-container {
-
-//    border: 1px solid blue;
    height: 120px;
    width: 100%;
    background-color: #fff;
    border-radius: 6px;
    margin: 40px 0;
    position: relative;
+   display: flex;
+    justify-content: center;
+   max-width: 100%;
+
 
    .cursor  {
        border: 1px solid black;
@@ -97,6 +99,7 @@ box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
        justify-content: center;
        font-weight: bolder;
        font-size: 10px;
+       border-radius: 3px;
        position: absolute;
        top: -20px;
        left: 50%;
@@ -119,7 +122,57 @@ box-shadow: 0px 0px 29px 0px rgba(195,20,50,1);
        position: absolute;
        bottom: -4px;
    }
+
+   .words-typed::-webkit-scrollbar, .new-words::-webkit-scrollbar  {
+    display: none;
+  }
+
+   .words-typed, .new-words {
+        overflow: scroll;
+       height: 100%;
+       width: 400px;
+       display: flex;
+        align-items:center;
+        justify-content: flex-start;
+
+   }
+
+   .words-typed {
+       border: 1px solid blue;
+       background-color: blue;
+       
+   }
+
+   .new-words {
+       border: 1px solid pink;
+       background-color: pink;
+ 
+   }
+
 }
+
+
+.new-words {
+    
+    .word {
+        // border: 1px solid blaue;
+        display: inline;
+        padding: 0;
+        margin: 0;
+        margin-right: 10px;
+        // margin-top: 50px !important;
+    }
+
+    .word p {
+        // border: 2px solid red;
+        display: inline;
+        font-size: 25px;
+        white-space: nowrap
+
+    }
+}
+
+
 
 @keyframes cursor {
     0% {
