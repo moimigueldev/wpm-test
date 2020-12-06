@@ -137,39 +137,31 @@
 
    }
 
-   .words-typed {
-       border: 1px solid blue;
-       background-color: blue;
-       
-   }
 
-   .new-words {
-       border: 1px solid pink;
-       background-color: pink;
- 
-   }
 
 }
 
-
-.new-words {
-    
-    .word {
-        // border: 1px solid blaue;
-        display: inline;
-        padding: 0;
-        margin: 0;
-        // margin-left: 10px;
-        // margin-top: 50px !important;
-    }
-
-    .word p {
-        // border: 2px solid red;
-        display: inline;
+.words-typed {
+    p  {
+        color: #777;
+        margin-right: 10px;
+        margin-left: auto;
         font-size: 25px;
         white-space: nowrap;
 
+    }
 
+ 
+}
+
+.words-typed p:last-child {
+    color: red
+}
+
+.new-words {
+    .word p {
+        font-size: 25px;
+        white-space: nowrap;
     }
 }
 

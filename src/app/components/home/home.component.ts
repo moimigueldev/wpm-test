@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WordService } from '../../services/word.service'
 @Component({
   selector: 'app-home',
@@ -8,7 +8,8 @@ import { WordService } from '../../services/word.service'
 export class HomeComponent implements OnInit {
   word: string;
   charIndex = 0;
-
+  typedWord = ``;
+  @ViewChild('inputContainer') inputContainer: ElementRef;
 
   constructor(
     public wordService: WordService
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   onKeydown(e) {
 
-
+    console.log(this.inputContainer.nativeElement.querySelector('.start-indicator').classList.add('stop'))
 
     if (e.key === this.word[0]) {
       this.word = this.word.substring(1)
@@ -40,6 +41,11 @@ export class HomeComponent implements OnInit {
 
     } else {
       console.log('no')
+      this.typedWord += e.key
+      console.log(document.getElementById('bad').scrollWidth)
+      console.log(document.getElementById('bad').scrollLeft)
+      document.getElementById('bad').scrollLeft = document.getElementById('bad').scrollWidth
+
     }
 
   }
