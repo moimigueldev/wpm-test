@@ -137,8 +137,10 @@
 
    }
 
+}
 
-
+.input-container:focus {
+    outline: 0;
 }
 
 .words-typed {
@@ -165,6 +167,49 @@
     }
 }
 
+
+// modal
+
+.modal {
+    position: absolute;
+    border: 2px solid yellow;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: none;;
+    
+
+    
+
+    .modal-body {
+        height: 400px;
+        width: 550px;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 10px;
+        -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+        transform: translateY(200%);
+        transition: transform 0.3s ease-in;
+    }
+    
+    .modal-body.show {
+        transform: translateY(0%);
+    
+    };
+
+
+
+  
+}
 
 
 @keyframes cursor {

@@ -3,15 +3,15 @@
 
 <div class="stats-container">
     <div class="stats" id="seconds">
-        <p>60</p>
+        <p>{{timeRemaining}}</p>
         <span>seconds</span>
     </div>
     <div class="stats" id="wordsPerMin">
-        <p>0</p>
+        <p>{{wordsTyped}}</p>
         <span>words/min</span>
     </div>
     <div class="stats" id="charsPerMin">
-        <p>0</p>
+        <p>{{charsPerMin}}</p>
         <span>chars/min</span>
 
     </div>
@@ -24,21 +24,31 @@
 
 
 <div class="input-container" tabindex="1" (keydown)="onKeydown($event)" #inputContainer>
-    <div class="start-indicator ">Start Typing</div>
+    <div class="start-indicator" #startIndicator>Start Typing</div>
     <div class="cursor"></div>
 
-    <div class="words-typed" id="bad">
+    <div class="words-typed" #wordsTypedContainer>
 
-        <p>{{typedWord}}</p>
+        <p id="bad" #wordTypedParagraph>{{typedWord}}</p>
 
     </div>
 
     <div class="new-words">
 
 
-        <div class="word" id="word">
+        <div class="word" id="word" #wordContainer>
             <p>{{word}}</p>
         </div>
     </div>
 
+</div>
+
+
+<div class="modal" #modal>
+
+    <div class="modal-body" #modalBody>
+        <h1>Hello world</h1>
+
+
+    </div>
 </div>

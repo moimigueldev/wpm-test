@@ -7,6 +7,12 @@ import * as randomWords from 'random-words'
 export class WordService {
   words: string[];
   constructor() {
-    this.words = randomWords(500);
+    this.generateWords();
   }
+
+  generateWords(): void {
+    this.words = randomWords(500);
+
+  }
+
 }
