@@ -76,6 +76,8 @@
    display: flex;
     justify-content: center;
    max-width: 100%;
+   transform: translateY(90%);
+   transition: transform 0.6s ease-in;
 
 
    .cursor  {
@@ -137,6 +139,10 @@
 
    }
 
+}
+
+.input-container.show {
+    transform: translateY(0%);
 }
 
 .input-container:focus {

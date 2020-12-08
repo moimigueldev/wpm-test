@@ -6,7 +6,7 @@ import { WordService } from '../../services/word.service'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   word: string;
   charIndex = 0;
   typedWord = ``;
@@ -40,13 +40,22 @@ export class HomeComponent implements OnInit {
     public slideupService: SlideUpModalService
   ) { }
 
+  ngAfterViewInit(): void {
+    // this.startIndicator.nativeElement.classList.add('stop');
+    this.inputContainer.nativeElement.focus();
+
+
+    setTimeout(() => {
+      this.inputContainer.nativeElement.classList.add('show')
+      this.startIndicator.nativeElement.classList.remove('stop');
+
+    }, 100)
+
+
+  }
 
   ngOnInit(): void {
     this.inializeWords();
-
-    setTimeout(() => {
-      this.slideupService.showModal();
-    }, 1000);
   }
 
   inializeWords(): void {
@@ -64,6 +73,7 @@ export class HomeComponent implements OnInit {
     this.typedWord = '';
     this.mistakes = 0;
     this.inializeWords();
+    this.wordContainer.nativeElement.focus();
   }
 
   calculate(): void {
@@ -80,11 +90,11 @@ export class HomeComponent implements OnInit {
     this.timer = setInterval(() => {
       this.timeRemaining--;
 
-      if (this.timeRemaining === 57) {
-
-
+      if (this.timeRemaining === 50) {
+        console.log('done')
         this.calculate();
-        // this.reset();
+        this.slideupService.showModal();
+        this.reset();
         this.stopTimer();
       }
     }, 1000)
