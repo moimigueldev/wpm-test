@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.inputContainer.nativeElement.focus();
     setTimeout(() => {
-      this.modal.nativeElement.style.display = 'flex'
+      this.showModal = true
 
       setTimeout(() => {
         this.modalBody.nativeElement.classList.add('show')

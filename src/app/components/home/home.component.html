@@ -44,7 +44,9 @@
 </div>
 
 
-<div class="modal" #modal>
+<div class="modal" #modal *ngIf="true">
+
+    <div class="close">x</div>
 
     <div class="modal-body" #modalBody>
         <h1>Hello world</h1>
