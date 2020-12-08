@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { SlideUpModalService } from 'src/app/services/slide-up-modal.service';
 import { WordService } from '../../services/word.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   word: string;
   charIndex = 0;
   typedWord = ``;
@@ -35,25 +36,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('modal') modal: ElementRef;
 
   constructor(
-    public wordService: WordService
+    public wordService: WordService,
+    public slideupService: SlideUpModalService
   ) { }
 
-  ngAfterViewInit(): void {
-    this.inputContainer.nativeElement.focus();
-    setTimeout(() => {
-      this.showModal = true
-
-      setTimeout(() => {
-        this.modalBody.nativeElement.classList.add('show')
-
-      }, 100);
-      console.log('did it')
-    }, 1000);
-
-  }
 
   ngOnInit(): void {
     this.inializeWords();
+
+    setTimeout(() => {
+      this.slideupService.showModal();
+    }, 1000);
   }
 
   inializeWords(): void {

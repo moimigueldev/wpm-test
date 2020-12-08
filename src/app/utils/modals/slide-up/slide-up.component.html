@@ -1,0 +1,12 @@
+<div class="modal" #modal>
+
+    <div class="overlay" (click)="slideupService.closeModal()"></div>
+
+    <div class=" modal-body" #modalBody>
+        <div class="close" (click)="slideupService.closeModal()"><i class="fas fa-times"></i></div>
+
+        <ng-content></ng-content>
+
+
+    </div>
+</div>
