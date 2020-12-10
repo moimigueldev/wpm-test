@@ -10,7 +10,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   word: string;
   charIndex = 0;
   typedWord = ``;
-
   timer;
 
   seconds = 60;
@@ -19,6 +18,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   charsPerMin = 0;
   accuracy = 0;
   mistakes = 0;
+
 
 
   results = {
@@ -84,30 +84,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   calculate(): void {
-    // const wpmResult = (this.wordsTyped / 5) / 60;
-    // console.log('results', wpmResult)
     this.showModal = true;
     this.results.wpm = this.wordsTyped;
     this.results.charsPerMin = this.charsPerMin;
     this.results.accuracy = this.accuracy;
-    // this.modalBody.nativeElement.classList.add('show')
   }
 
 
   startTimer(): void {
-
     this.startIndicator.nativeElement.classList.add('stop')
     this.timer = setInterval(() => {
       this.timeRemaining--;
 
-      if (this.timeRemaining === 50) {
-        console.log('done')
+      if (this.timeRemaining === 0) {
         this.calculate();
         this.slideupService.showModal();
-
         setTimeout(() => {
           this.reset();
-
         }, 1000);
         this.stopTimer();
       }
@@ -131,7 +124,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     if (e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode === 32) {
       const key = e.key;
-
       if (key === this.word[0]) {
         this.word = this.word.substring(1);
         this.charsPerMin++;
@@ -141,15 +133,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
         } else {
           this.wordContainer.nativeElement.style.marginLeft = '0px';
-
         }
       } else {
         this.typedWord += e.key;
         this.mistakes++;
         this.wordsTypedContainer.nativeElement.scrollLeft = this.wordsTypedContainer.nativeElement.scrollWidth
       }
+      const totalCharsTyped = this.charsPerMin + this.typedWord.length
+      this.accuracy = Math.floor((this.charsPerMin / totalCharsTyped) * 100);
     } else {
-      console.log('no')
+      this.mistakes++;
     }
 
   }
