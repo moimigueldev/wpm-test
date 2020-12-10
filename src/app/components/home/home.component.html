@@ -45,16 +45,40 @@
 
 
 <app-slide-up>
-    <div class="modal-content">
+    <div class="modal-content" *ngIf="results.level === 'pro'">
         <img src="https://www.starpng.com/public/uploads/preview/octopus-vector-hd-png-115823867968rcvhkinrg.png"
             alt="">
         <div class="results">
             <h1>You're an Octopus</h1>
-            <p>Neat! You type with the speed of <span class="wpm">{{results.wpm}} WPM</span> ({{results.charsPerMin}}
+            <p>Pro Status! You type with the speed of <span class="wpm">{{results.wpm}} WPM</span>
+                ({{results.charsPerMin}}
                 CPM). Your accuracy was
-                <span class="accuracy">84%</span>. Good
+                <span class="accuracy">{{accuracy}}%</span>. Good
                 job!</p>
         </div>
     </div>
+    <div class="modal-content" *ngIf="results.level === 'fast'">
+        <img src="data:image/jpeg;base64,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"
+            alt="">
+        <div class="results">
+            <h1>You're a Rabbit!</h1>
+            <p>Neat! You type with the speed of <span class="wpm">{{results.wpm}} WPM</span>
+                ({{results.charsPerMin}}
+                CPM). Your accuracy was
+                <span class="accuracy">{{accuracy}}%</span>. Good
+                job!</p>
+        </div>
+    </div>
+    <div class="modal-content" *ngIf="results.level === 'slow'">
+        <img src="https://www.publicdomainpictures.net/pictures/180000/velka/tortoise-on-white-background.jpg" alt="">
+        <div class="results">
+            <h1>You are very slow</h1>
+            <p>Try Again! You type with the speed of <span class="wpm">{{results.wpm}} WPM</span>
+                ({{results.charsPerMin}}
+                CPM). Your accuracy was
+                <span class="accuracy">{{accuracy}}%</span>. Keep Trying!</p>
+        </div>
+    </div>
+
 
 </app-slide-up>

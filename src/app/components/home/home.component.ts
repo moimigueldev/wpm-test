@@ -8,28 +8,23 @@ import { WordService } from '../../services/word.service'
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   word: string;
-  charIndex = 0;
   typedWord = ``;
   timer;
 
-  seconds = 60;
   timeRemaining = 60;
   wordsTyped = 0;
   charsPerMin = 0;
   accuracy = 0;
-  mistakes = 0;
-
-
 
   results = {
     wpm: 0,
     charsPerMin: 0,
-    accuracy: 0
+    accuracy: 0,
+    level: ''
   }
 
   timerStarted = false;
 
-  showModal = false;
 
 
 
@@ -48,9 +43,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
-    // this.startIndicator.nativeElement.classList.add('stop');
     this.inputContainer.nativeElement.focus();
-
 
     setTimeout(() => {
       this.inputContainer.nativeElement.classList.add('show')
@@ -78,18 +71,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.charsPerMin = 0;
     this.wordsTyped = 0;
     this.typedWord = '';
-    this.mistakes = 0;
+
     this.inializeWords();
     this.inputContainer.nativeElement.focus();
   }
 
   calculate(): void {
-    this.showModal = true;
     this.results.wpm = this.wordsTyped;
     this.results.charsPerMin = this.charsPerMin;
     this.results.accuracy = this.accuracy;
+    this.results.level = this.calculateLevel();
   }
 
+  calculateLevel(): string {
+    if (this.wordsTyped >= 40) {
+      return 'fast'
+    } else if (this.wordsTyped >= 80) {
+      return 'pro'
+    } else {
+      return 'slow'
+    }
+  }
 
   startTimer(): void {
     this.startIndicator.nativeElement.classList.add('stop')
@@ -136,13 +138,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
       } else {
         this.typedWord += e.key;
-        this.mistakes++;
         this.wordsTypedContainer.nativeElement.scrollLeft = this.wordsTypedContainer.nativeElement.scrollWidth
       }
       const totalCharsTyped = this.charsPerMin + this.typedWord.length
       this.accuracy = Math.floor((this.charsPerMin / totalCharsTyped) * 100);
     } else {
-      this.mistakes++;
     }
 
   }
