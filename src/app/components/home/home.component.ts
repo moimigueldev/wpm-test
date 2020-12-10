@@ -20,6 +20,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   accuracy = 0;
   mistakes = 0;
 
+
+  results = {
+    wpm: 0,
+    charsPerMin: 0,
+    accuracy: 0
+  }
+
   timerStarted = false;
 
   showModal = false;
@@ -73,13 +80,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.typedWord = '';
     this.mistakes = 0;
     this.inializeWords();
-    this.wordContainer.nativeElement.focus();
+    this.inputContainer.nativeElement.focus();
   }
 
   calculate(): void {
     // const wpmResult = (this.wordsTyped / 5) / 60;
     // console.log('results', wpmResult)
     this.showModal = true;
+    this.results.wpm = this.wordsTyped;
+    this.results.charsPerMin = this.charsPerMin;
+    this.results.accuracy = this.accuracy;
     // this.modalBody.nativeElement.classList.add('show')
   }
 
@@ -94,7 +104,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.log('done')
         this.calculate();
         this.slideupService.showModal();
-        this.reset();
+
+        setTimeout(() => {
+          this.reset();
+
+        }, 1000);
         this.stopTimer();
       }
     }, 1000)
