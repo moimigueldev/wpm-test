@@ -64,7 +64,7 @@
 .input-container {
   height: 120px;
   width: 100%;
-  background-color: #fff;
+  background-color: rgb(226, 226, 226);
   border-radius: 6px;
   margin: 40px 0;
   position: relative;
@@ -142,6 +142,7 @@
 
 .input-container:focus {
   outline: 0;
+  background-color: #fff;
 }
 
 .words-typed {
